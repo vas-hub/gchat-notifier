@@ -1,0 +1,12 @@
+name: "GChat notifier"
+description: "Notify of new deployments via Google Chat"
+inputs:
+  project-name: # Name of the project
+    description: "Name of the project"
+    required: true
+  sheet-url: # URL of the sheet
+    description: "URL of the sheet"
+    required: true
+runs:
+  using: "node16"
+  main: "dist/index.js"
