@@ -4,8 +4,14 @@ inputs:
   project-name: # Name of the project
     description: "Name of the project"
     required: true
-  sheet-url: # URL of the sheet
+  sheed-id: # URL of the sheet
     description: "URL of the sheet"
+    required: true
+  service-account-email: # E-mail of the service account
+    description: "E-mail of the service account"
+    required: true
+  service-account-private-key: # Private key of the GCP service account
+    description: "Private key of the GCP service account"
     required: true
 runs:
   using: "node16"
