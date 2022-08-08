@@ -4,7 +4,7 @@ inputs:
   project-name: # Name of the project
     description: "Name of the project"
     required: true
-  sheed-id: # URL of the sheet
+  sheet-id: # URL of the sheet
     description: "URL of the sheet"
     required: true
   service-account-email: # E-mail of the service account
