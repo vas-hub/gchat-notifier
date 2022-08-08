@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 import axios from "axios";
-import { JWT } from "google-auth-library";
+import { AuthClient, JWT } from "google-auth-library";
 import { google } from "googleapis";
 
 async function run(): Promise<void> {
@@ -46,23 +46,20 @@ async function run(): Promise<void> {
     if (!result.data.values || !result.data.values.length)
       throw new Error("No data found");
 
-    const serviceRow = result.data.values.find(
+    const projectRow = result.data.values.find(
       ([service]) => service === projectName
     );
 
-    if (!serviceRow || !serviceRow.length)
+    if (!projectRow?.length)
       throw new Error(
         `Webhook URL not found for project name \`${projectName}\``
       );
 
-    const googleChatwebHooksEndpoint = serviceRow[1];
-
-    await axios.post(googleChatwebHooksEndpoint, {
-      data: {
-        text: `🍆 Project "${projectName}" deployed!`,
-      },
+    await axios.post(projectRow[1], {
+      text: `🍆 Project "${projectName}" deployed!`,
     });
   } catch (error) {
+    console.error(error);
     if (error instanceof Error) core.setFailed(error.message);
   }
 }
